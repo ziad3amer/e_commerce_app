@@ -19,6 +19,6 @@ class ProductDio {
 
   Future<Response> getProducts() async {
     final response = await dio.get('/products');
-    return response.data;
+    return response;
   }
 }

@@ -51,7 +51,6 @@ class ProductModel {
     required this.thumbnail,
   });
 
-  /// السعر بعد الخصم
   double get discountedPrice => price * (1 - discountPercentage / 100);
 
   bool get inStock => stock > 0;
@@ -59,32 +58,32 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'] as int,
-      title: json['title'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      category: json['category'] as String? ?? '',
-      price: (json['price'] as num?)?.toDouble() ?? 0,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      category: json['category'] as String,
+      price: (json['price'] as num).toDouble(),
       discountPercentage:
-      (json['discountPercentage'] as num?)?.toDouble() ?? 0,
-      rating: (json['rating'] as num?)?.toDouble() ?? 0,
-      stock: json['stock'] as int? ?? 0,
+      (json['discountPercentage'] as num).toDouble() ,
+      rating: (json['rating'] as num).toDouble(),
+      stock: json['stock'] as int,
       tags: List<String>.from(json['tags'] ?? const []),
-      brand: json['brand'] as String? ?? '',
-      sku: json['sku'] as String? ?? '',
-      weight: (json['weight'] as num?)?.toDouble() ?? 0,
+      brand: json['brand'] as String,
+      sku: json['sku'] as String,
+      weight: (json['weight'] as num).toDouble(),
       dimensions: json['dimensions'] != null
           ? DimensionsModel.fromJson(json['dimensions'])
           : null,
-      warrantyInformation: json['warrantyInformation'] as String? ?? '',
-      shippingInformation: json['shippingInformation'] as String? ?? '',
-      availabilityStatus: json['availabilityStatus'] as String? ?? '',
+      warrantyInformation: json['warrantyInformation'] as String,
+      shippingInformation: json['shippingInformation'] as String,
+      availabilityStatus: json['availabilityStatus'] as String,
       reviews: (json['reviews'] as List<dynamic>? ?? const [])
           .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      returnPolicy: json['returnPolicy'] as String? ?? '',
-      minimumOrderQuantity: json['minimumOrderQuantity'] as int? ?? 1,
+      returnPolicy: json['returnPolicy'] as String,
+      minimumOrderQuantity: json['minimumOrderQuantity'] as int,
       meta: json['meta'] != null ? MetaModel.fromJson(json['meta']) : null,
       images: List<String>.from(json['images'] ?? const []),
-      thumbnail: json['thumbnail'] as String? ?? '',
+      thumbnail: json['thumbnail'] as String,
     );
   }
 }

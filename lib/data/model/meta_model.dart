@@ -15,8 +15,8 @@ class MetaModel {
     return MetaModel(
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
       updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
-      barcode: json['barcode'] as String,
-      qrCode: json['qrCode'] as String,
+      barcode: json['barcode'] as String? ?? '',
+      qrCode: json['qrCode'] as String? ?? '',
     );
   }
 }

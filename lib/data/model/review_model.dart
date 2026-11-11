@@ -16,10 +16,10 @@ class ReviewModel {
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
       rating: (json['rating'] as num).toDouble(),
-      comment: json['comment'] as String,
-      date: DateTime.tryParse(json['date'] as String),
-      reviewerName: json['reviewerName'] as String,
-      reviewerEmail: json['reviewerEmail'] as String,
+      comment: json['comment'] as String? ?? '',
+      date: DateTime.tryParse(json['date'] as String? ?? ''),
+      reviewerName: json['reviewerName']as String? ?? '',
+      reviewerEmail: json['reviewerEmail'] as String? ?? '',
     );
   }
 }

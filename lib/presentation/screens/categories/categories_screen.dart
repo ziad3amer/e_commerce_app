@@ -1,11 +1,16 @@
-// if (state is ProductSuccess) {
-//   final products = product.category;
-//   final category [
-//     "All",
-//     ...products.map((product)=>products.category ).toset;
-//   final filteredProducts= selectedCategory=="All"?
-//   products
-// : products.where((product)=>product.category==selectedCategory).toList();
-//
-// ]
-// }
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class CategoriesScreen extends StatefulWidget {
+  const CategoriesScreen({super.key});
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.red);
+  }
+}

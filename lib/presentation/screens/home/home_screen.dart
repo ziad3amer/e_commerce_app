@@ -120,126 +120,130 @@ class _HomeScreenState extends State<HomeScreen> {
                                   )
                                   .toList();
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Top Product Image
-                            SizedBox(
-                              width: double.infinity,
-                              height: 180,
-                              child: Image.network(
-                                products.last.thumbnail,
-                                fit: BoxFit.contain,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.image_not_supported);
-                                },
+                        return SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Top Product Image
+                              SizedBox(
+                                width: double.infinity,
+                                height: 180,
+                                child: Image.network(
+                                  products.last.thumbnail,
+                                  fit: BoxFit.contain,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const Icon(
+                                      Icons.image_not_supported,
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
 
-                            const SizedBox(height: 15),
+                              const SizedBox(height: 15),
 
-                            // Categories Title
-                            const Text(
-                              "Categories",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFF111827),
+                              // Categories Title
+                              const Text(
+                                "Categories",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFF111827),
+                                ),
                               ),
-                            ),
 
-                            const SizedBox(height: 12),
+                              const SizedBox(height: 12),
 
-                            // Categories List
-                            SizedBox(
-                              height: 100,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: categories.length,
-                                itemBuilder: (context, index) {
-                                  final category = categories[index];
+                              // Categories List
+                              SizedBox(
+                                height: 100,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: categories.length,
+                                  itemBuilder: (context, index) {
+                                    final category = categories[index];
 
-                                  final isSelected =
-                                      selectedCategory == category;
+                                    final isSelected =
+                                        selectedCategory == category;
 
-                                  return GestureDetector(
-                                    onTap: () {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedCategory = category;
+                                        });
+                                      },
+                                      child: SizedBox(
+                                        width: 75,
+                                        child: Column(
+                                          children: [
+                                            CircleAvatar(
+                                              radius: 30,
+                                              backgroundColor: isSelected
+                                                  ? const Color(0xFF10B981)
+                                                  : const Color(0xFFEFF6FF),
+                                              child: Icon(
+                                                getCategoryIcon(category),
+                                                color: isSelected
+                                                    ? Colors.white
+                                                    : const Color(0xFF64748B),
+                                                size: 25,
+                                              ),
+                                            ),
+
+                                            const SizedBox(height: 8),
+
+                                            Text(
+                                              category,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: isSelected
+                                                    ? const Color(0xFF10B981)
+                                                    : const Color(0xFF64748B),
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+
+                              const SizedBox(height: 16),
+
+                              // Popular Products Title
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    "Popular Products",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xFF111827),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
                                       setState(() {
-                                        selectedCategory = category;
+                                        selectedCategory = "All";
                                       });
                                     },
-                                    child: SizedBox(
-                                      width: 75,
-                                      child: Column(
-                                        children: [
-                                          CircleAvatar(
-                                            radius: 30,
-                                            backgroundColor: isSelected
-                                                ? const Color(0xFF10B981)
-                                                : const Color(0xFFEFF6FF),
-                                            child: Icon(
-                                              getCategoryIcon(category),
-                                              color: isSelected
-                                                  ? Colors.white
-                                                  : const Color(0xFF64748B),
-                                              size: 25,
-                                            ),
-                                          ),
-
-                                          const SizedBox(height: 8),
-
-                                          Text(
-                                            category,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              color: isSelected
-                                                  ? const Color(0xFF10B981)
-                                                  : const Color(0xFF64748B),
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ],
+                                    child: const Text(
+                                      "See All",
+                                      style: TextStyle(
+                                        color: Color(0xFF10B981),
                                       ),
                                     ),
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            // Popular Products Title
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Popular Products",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF111827),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      selectedCategory = "All";
-                                    });
-                                  },
-                                  child: const Text(
-                                    "See All",
-                                    style: TextStyle(color: Color(0xFF10B981)),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 8),
-
-                            // Filtered Products Grid
-                            Expanded(
-                              child: GridView.builder(
+                              const SizedBox(height: 8),
+                              GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: filteredProducts.length,
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
@@ -325,8 +329,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   );
                                 },
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       }
 

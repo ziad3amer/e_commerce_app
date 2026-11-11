@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/constanse/main_screen.dart';
 import 'package:e_commerce_app/presentation/screens/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return HomeScreen();
+                        return MainScreen();
                       },
                     ),
                   );
